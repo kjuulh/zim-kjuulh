@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.0.0...v1.1.0) (2023-06-07)
+
+
+### Features
+
+* add kill nvim ([0d9eff5](https://github.com/kjuulh/zim-kjuulh/commit/0d9eff5d10699b30965edd051c957f1b000646d2))
+* add more git commands ([1561d32](https://github.com/kjuulh/zim-kjuulh/commit/1561d3239153b9fadf867c3f951900548bcf2f95))
+
 ## 1.0.0 (2023-06-07)
 
 
