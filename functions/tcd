@@ -1,0 +1,9 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+tmux new-window -n tcd
+
+tmux send-keys -n tcd "," C-m
+
+tmux select-pane -t 0
