@@ -1,0 +1,9 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+ps aux \
+  | rg --no-messages "nvim ." \
+  | rg --no-messages -v "rg --no-messages 'nvim \.'" \
+  | awk '{print $2}' \
+  | xargs -r kill
