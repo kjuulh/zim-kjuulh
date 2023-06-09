@@ -4,18 +4,18 @@ builtin emulate -L zsh
 
 tmux new-window -n update
 
-tmux send-keys -t update "brew update && brew upgrade" C-m
+tmux send-keys -t update "brew update && brew upgrade && exit" C-m
 
 # allow for user input
 tmux split-window -v
 
-tmux send-keys -t update 'rustup update' C-m
+tmux send-keys -t update 'rustup update && exit' C-m
 tmux split-window -v
 
-tmux send-keys -t update 'cargo install-update -a' C-m
+tmux send-keys -t update 'cargo install-update -a && exit' C-m
 tmux split-window -v
 
-tmux send-keys -t update 'zimfw update' C-m
+tmux send-keys -t update 'zimfw update && exit' C-m
 
 # set user input to first 
 tmux select-pane -t 0
