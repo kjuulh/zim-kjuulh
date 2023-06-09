@@ -17,8 +17,4 @@ tmux split-window -v
 
 tmux send-keys -t update 'zimfw update && exit' C-m
 
-# set user input to first 
-tmux select-pane -t 0
-
-
-tmux attach-session -t lunardev
+echo "done updating"
