@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.1.0...v1.2.0) (2023-06-09)
+
+
+### Features
+
+* add update all ([a519edb](https://github.com/kjuulh/zim-kjuulh/commit/a519edb1edb661a83e427008878df1599179cde9))
+* cleanup ([55b1473](https://github.com/kjuulh/zim-kjuulh/commit/55b1473ce64d349304027c4c68c5034c8b76867e))
+* update all close when done ([1385a22](https://github.com/kjuulh/zim-kjuulh/commit/1385a2207de5a431d03ae85efdecee90731e7734))
+
 ## [1.1.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.0.0...v1.1.0) (2023-06-07)
 
 
