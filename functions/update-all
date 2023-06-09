@@ -1,0 +1,24 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+tmux new-window -n update
+
+tmux send-keys -t update "brew update && brew upgrade" C-m
+
+# allow for user input
+tmux split-window -v
+
+tmux send-keys -t update 'rustup update' C-m
+tmux split-window -v
+
+tmux send-keys -t update 'cargo install-update -a' C-m
+tmux split-window -v
+
+tmux send-keys -t update 'zimfw update' C-m
+
+# set user input to first 
+tmux select-pane -t 0
+
+
+tmux attach-session -t lunardev
