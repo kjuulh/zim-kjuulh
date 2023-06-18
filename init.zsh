@@ -54,28 +54,44 @@ gsync ()
   git pull origin master --rebase
 }
 
+gh_client ()
+{
+  REMOTE_URL=$(git config --get remote.origin.url)
+
+  # Check if the URL contains "github.com"
+  if [[ "$REMOTE_URL" =~ "github.com" ]]; then
+    echo "This is a Github repo."
+    # Execute gh command
+    gh $@
+  elif [[ "$REMOTE_URL" =~ "git.front.kjuulh.io" ]]; then
+    echo "This is a Gitea repo."
+    # Execute gtea command
+    coffee $@
+  else
+    echo "This repo's origin is not recognized."
+  fi
+}
+
 ghpv ()
 {
-    gh pr view -w
+    gh_client pr view -w
 }
 
 ghrv ()
 {
-    gh repo view -w
+    gh_client repo view -w
 }
 
 ghpc ()
 {
-  list=$(gh pr list | tail -n +1)
+  list=$(gh_client pr list | tail -n +1)
   choice=$(echo $list | fzf  | awk '{print $1}' | sed 's/#//g')
 
-  gh pr checkout $choice
+  gh_client pr checkout $choice
 
 }
 
 ghprc () 
 {
-  gh pr create
+  gh_client pr create
 }
-
-export CUDDLE_TEMPLATE_URL="git@git.front.kjuulh.io:kjuulh/cuddle-templates.git"
