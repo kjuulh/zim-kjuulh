@@ -56,6 +56,8 @@ gsync ()
 
 gh_client ()
 {
+
+
   REMOTE_URL=$(git config --get remote.origin.url)
 
   # Check if the URL contains "github.com"
