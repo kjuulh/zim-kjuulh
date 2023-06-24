@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
+
 gcm ()
 {
     local message=$1
