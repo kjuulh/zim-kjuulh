@@ -80,6 +80,7 @@ gh_client ()
       coffee $@
     else
       echo "Input not recognized. Please input either 'github' or 'gitea'."
+    fi
   fi
 }
 
