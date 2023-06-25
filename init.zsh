@@ -85,7 +85,7 @@ gh_client ()
 }
 
 ghrc() {
-  gh_client pr create
+  gh_client repo create
 }
 
 ghpv ()
