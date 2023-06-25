@@ -70,7 +70,7 @@ gh_client ()
     coffee $@
   else
     echo "This repo's origin is not recognized."
-    read -p "Is this a Github repo or a Gitea repo? (github/gitea) " REPO_TYPE
+    read "REPO_TYPE?Is this a Github repo or a Gitea repo? (github/gitea) "
 
     if [[ "$REPO_TYPE" = "github" ]]; then
       # Execute gh command
