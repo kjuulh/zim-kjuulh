@@ -63,15 +63,23 @@ gh_client ()
 
   # Check if the URL contains "github.com"
   if [[ "$REMOTE_URL" =~ "github.com" ]]; then
-    echo "This is a Github repo."
     # Execute gh command
     gh $@
   elif [[ "$REMOTE_URL" =~ "git.front.kjuulh.io" ]]; then
-    echo "This is a Gitea repo."
     # Execute gtea command
     coffee $@
   else
     echo "This repo's origin is not recognized."
+    read -p "Is this a Github repo or a Gitea repo? (github/gitea) " REPO_TYPE
+
+    if [[ "$REPO_TYPE" = "github" ]]; then
+      # Execute gh command
+      gh $@
+    elif [[ "$REPO_TYPE" = "gitea" ]]; then
+      # Execute gtea command
+      coffee $@
+    else
+      echo "Input not recognized. Please input either 'github' or 'gitea'."
   fi
 }
 
