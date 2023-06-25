@@ -2,6 +2,7 @@
 
 export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
 
+
 gcm ()
 {
     local message=$1
@@ -58,8 +59,6 @@ gsync ()
 
 gh_client ()
 {
-
-
   REMOTE_URL=$(git config --get remote.origin.url)
 
   # Check if the URL contains "github.com"
@@ -74,6 +73,10 @@ gh_client ()
   else
     echo "This repo's origin is not recognized."
   fi
+}
+
+ghrc() {
+  gh_client pr create
 }
 
 ghpv ()
