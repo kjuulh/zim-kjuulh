@@ -3,6 +3,14 @@
 export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
 
 
+gbt () 
+{
+  list=$(git branch -l --all  | grep origin | sed 's/remotes\///g')
+  choice=$(echo $list | fzf | sed 's/\*//g' | xargs echo)
+  git checkout --track $choice
+}
+
+
 gcm ()
 {
     local message=$1
