@@ -2,26 +2,33 @@
 
 builtin emulate -L zsh
 
-tmux new-window -n update
+# Create a new window named "update"
 
-select-layout even-vertical
+commands=("brew update && brew upgrade" "rustup update" "cargo install-update -a" "zimfw update" "nvim -c 'MasonUpdate' -c 'Lazy update' -c 'qa'")
+# Name of your new window
+window_name="updates"
 
-tmux send-keys -t update "brew update && brew upgrade && exit" C-m
+# Create a new window in the current session
+tmux new-window -n $window_name
 
-# allow for user input
-tmux split-window -v
+# Flag to check if it's the first command
+first_command=1
 
-tmux send-keys -t update 'rustup update && exit' C-m
-tmux split-window -v
+for i in "${commands[@]}"; do
+    if [ $first_command -eq 1 ]; then
+        # If it's the first command, just send it to the first pane
+        tmux send-keys -t $window_name "$i; exit" Enter
+        first_command=0
+    else
+        # If it's not the first command, split the window, create a new pane and send the command to it
+        tmux split-window -t $window_name
+        tmux send-keys -t $window_name "$i; exit" Enter
+    fi
+done
 
-tmux send-keys -t update 'cargo install-update -a && exit' C-m
+# You can adjust the layout to your preference
+tmux select-layout -t $window_name tiled
 
-tmux split-window -v
+# Switch to the new window
+tmux select-window -t $window_name
 
-tmux send-keys -t update 'zimfw update && exit' C-m
-
-tmux split-window -v
-
-tmux send-keys -t update 'nvim -c "MasonUpdate" && exit' C-m
-
-echo "done updating"
