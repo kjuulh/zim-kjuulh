@@ -1,7 +1,5 @@
 # vim:et sts=2 sw=2 ft=zsh
 
-builtin emulate -L zsh
-
 # Create a new window named "update"
 
 commands=("brew update && brew upgrade" "rustup update" "cargo install-update -a" "zimfw update" "nvim -c 'MasonUpdate' -c 'Lazy update' -c 'qa'")
