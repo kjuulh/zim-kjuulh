@@ -9,4 +9,11 @@ tmpfile="$file_path$timestamp"
 
 nvim $tmpfile || return
 
-toot post "$(cat $tmpfile)"
+echo "Are you sure you want to proceed with the toot command? (y/n)"
+read answer
+if [ "$answer" != "${answer#[Yy]}" ]; then
+    toot post "$(cat $tmpfile)"
+else
+    echo "Aborted."
+fi
+
