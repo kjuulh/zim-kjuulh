@@ -22,6 +22,6 @@ tmux send-keys -t update 'zimfw update && exit' C-m
 
 tmux split-window -v
 
-tmux send-keys -t update 'nvim -c 'MasonUpdate' C-m
+tmux send-keys -t update 'nvim -c "MasonUpdate" && exit' C-m
 
 echo "done updating"
