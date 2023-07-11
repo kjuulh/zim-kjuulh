@@ -1,0 +1,15 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+local tempfile=$(mktemp)
+
+# Open nvim and let the user edit the file
+nvim $tempfile
+
+# Use the contents of the file as input for your command
+toot post "$(cat $tempfile)"
+
+# Clean up the temporary file
+rm $tempfile
+
