@@ -2,14 +2,11 @@
 
 builtin emulate -L zsh
 
-local tempfile=$(mktemp)
+path="$HOME/git/git.front.kjuulh.io/kjuulh/toots/"
+timestamp=$(date  +%Y-%m-%d-%s)
 
-# Open nvim and let the user edit the file
-nvim $tempfile
+tmpfile = "$path$timestamp"
 
-# Use the contents of the file as input for your command
-toot post "$(cat $tempfile)"
+nvim $tmpfile || return
 
-# Clean up the temporary file
-rm $tempfile
-
+toot post "$(cat $tmpfile)"
