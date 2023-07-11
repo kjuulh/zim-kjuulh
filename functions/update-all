@@ -4,6 +4,8 @@ builtin emulate -L zsh
 
 tmux new-window -n update
 
+select-layout even-vertical
+
 tmux send-keys -t update "brew update && brew upgrade && exit" C-m
 
 # allow for user input
@@ -13,8 +15,13 @@ tmux send-keys -t update 'rustup update && exit' C-m
 tmux split-window -v
 
 tmux send-keys -t update 'cargo install-update -a && exit' C-m
+
 tmux split-window -v
 
 tmux send-keys -t update 'zimfw update && exit' C-m
+
+tmux split-window -v
+
+tmux send-keys -t update 'nvim -c 'MasonUpdate' C-m
 
 echo "done updating"
