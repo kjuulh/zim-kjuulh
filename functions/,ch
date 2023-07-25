@@ -2,7 +2,7 @@
 
 builtin emulate -L zsh
 
-file=$(fd ~/ --type file | fzf)
+file=$(fd . ${HOME}/.config --type file | fzf)
 
 # if file selection was cancelled, exit
 if [[ -z $file ]]; then
