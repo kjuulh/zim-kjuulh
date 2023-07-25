@@ -1,0 +1,14 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+file=$(find . -type f | fzf)
+
+# if file selection was cancelled, exit
+if [[ -z $file ]]; then
+  echo "No file selected, exiting"
+  exit 1
+fi
+
+# execute chezmoi edit with the selected file
+chezmoi edit "$file"
