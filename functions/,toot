@@ -7,6 +7,8 @@ timestamp=$(date +%Y-%m-%d-%s)
 
 tmpfile="$file_path$timestamp"
 
+alias hx=helix
+
 hx $tmpfile || return
 
 echo "Are you sure you want to proceed with the toot command? (y/n)"
