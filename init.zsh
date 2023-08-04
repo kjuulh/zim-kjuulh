@@ -2,7 +2,7 @@
 
 export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
 
-source <(jj util completion --zsh)
+#source <(jj util completion --zsh)
 
 gbt () 
 {
