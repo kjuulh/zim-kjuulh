@@ -1,0 +1,23 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+export BORG_PASSPHRASE=$(op item get --vault application  borg_backup_hermansen_server --fields borg_passphrase)
+
+options=("parts" "ratchet")
+
+# Prompt the user to choose an option using fzf
+selected_option=$(printf "%s\n" "${options[@]}" | fzf --prompt="Select a backup: ")
+
+# Check if a selection was made
+if [[ -z "$selected_option" ]]; then
+    echo "No tool selected. Exiting."
+    exit 1
+fi
+
+mkdir -p mnt
+
+echo "Pruning borg backup @$selected_option"
+
+borg prune --progress --info ssh://clank_storage_box/./backups/$selected_option --keep-daily=7 --keep-weekly=4 --keep-monthly=6 --keep-yearly=-1
