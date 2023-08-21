@@ -2,4 +2,4 @@
 
 builtin emulate -L zsh
 
-devshuttle run $@
+$HOME/go/bin/shuttle run $@
