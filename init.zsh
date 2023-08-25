@@ -2,6 +2,9 @@
 
 export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
 
+# Coffee setup (https://git.front.kjuulh.io/kjuulh/coffee) is a gitea cli client like gh-cli
+export COFFEE_OWNER=kjuulh
+
 #source <(jj util completion --zsh)
 
 gbt () 
