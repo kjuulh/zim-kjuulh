@@ -2,14 +2,7 @@
 
 builtin emulate -L zsh
 
-# Create a new window named "update"
-
 update_commands=("brew update && brew upgrade" "rustup update" "cargo install-update -a" "zimfw update" "nvim -c 'MasonUpdate' -c 'Lazy update' -c 'qa'")
-# Name of your new window
-window_name="updates"
-
-# Create a new window in the current session
-tmux new-window -n $window_name
 
 # Flag to check if it's the first command
 first_command=1
@@ -17,18 +10,10 @@ first_command=1
 for i in "${update_commands[@]}"; do
     if [ $first_command -eq 1 ]; then
         # If it's the first command, just send it to the first pane
-        tmux send-keys -t $window_name "$i; exit" Enter
+        zellij run -c -- "$i"
         first_command=0
     else
-        # If it's not the first command, split the window, create a new pane and send the command to it
-        tmux split-window -t $window_name
-        tmux send-keys -t $window_name "$i; exit" Enter
+        zellij run -c -- "$i"
     fi
 done
-
-# You can adjust the layout to your preference
-tmux select-layout -t $window_name tiled
-
-# Switch to the new window
-tmux select-window -t $window_name
 
