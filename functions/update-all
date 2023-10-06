@@ -10,10 +10,10 @@ first_command=1
 for i in "${update_commands[@]}"; do
     if [ $first_command -eq 1 ]; then
         # If it's the first command, just send it to the first pane
-        zellij run -c -- "$i"
+        zellij run -c -- $i
         first_command=0
     else
-        zellij run -c -- "$i"
+        zellij run -c -- $i
     fi
 done
 
