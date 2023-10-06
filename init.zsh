@@ -126,8 +126,8 @@ ghprc ()
 
 update()
 {
-  zellij run -c -- yay -Syyuu
   zellij run -c -- brew upgrade && brew upgrade
   zellij run -c -- rustup update
   zellij run -c -- cargo install-update -a
+  zellij run -c -- yay -Syyuu
 }
