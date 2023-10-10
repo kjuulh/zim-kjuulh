@@ -134,5 +134,5 @@ update()
 
 preview_parquet() {
   p=$1
-  fd . "${p}" | fzf --preview 'pqrs cat {}'
+  fd .parquet "${p}" | fzf --preview 'pqrs head -n 5 {} --json | jq' --preview-window 'top:70%'
 }
