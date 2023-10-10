@@ -131,3 +131,8 @@ update()
   zellij run -c -- cargo install-update -a
   zellij run -c -- yay -Syyuu
 }
+
+preview_parquet() {
+  path=$1
+  fd . "${path}" | fzf --preview 'pqrs cat {}'
+}
