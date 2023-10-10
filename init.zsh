@@ -133,6 +133,6 @@ update()
 }
 
 preview_parquet() {
-  path=$1
-  fd . "${path}" | fzf --preview 'pqrs cat {}'
+  p=$1
+  fd . "${p}" | fzf --preview 'pqrs cat {}'
 }
