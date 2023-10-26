@@ -136,3 +136,6 @@ preview_parquet() {
   p=$1
   fd .parquet "${p}" | fzf --preview 'pqrs head -n 5 {} --json | jq' --preview-window 'top:70%'
 }
+
+alias git-review=~/.cargo/bin/rev
+alias ranger=yazi
