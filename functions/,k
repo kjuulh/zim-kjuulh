@@ -1,0 +1,13 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+CLANK_KUBERNETES_CONFIGS=/Users/kah/.config/clank-kubernetes-configs
+
+: ${CLANK_KUBERNETES_CONFIGS?"Error: CLANK_KUBERNETS_CONFIGS is not set."}
+
+echo "select a context"
+
+file=$(gum file $CLANK_KUBERNETES_CONFIGS)
+
+export KUBE_CONFIG="${file}"
