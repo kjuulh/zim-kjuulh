@@ -10,4 +10,4 @@ echo "select a context"
 
 file=$(gum file $CLANK_KUBERNETES_CONFIGS)
 
-export KUBE_CONFIG="${file}"
+export KUBECONFIG="${file}"
