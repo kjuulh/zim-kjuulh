@@ -2,6 +2,8 @@
 
 builtin emulate -L zsh
 
+RUST_LOG=hyperlog=trace
+
 hyperlog \
   --backend remote \
   --backend-url https://grpc.hyperlog.prod.kjuulh.app:443
