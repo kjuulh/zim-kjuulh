@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.4.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.3.0...v1.4.0) (2024-05-31)
+
+
+### Features
+
+* add ,k ([c567949](https://github.com/kjuulh/zim-kjuulh/commit/c5679495bda8e507570cc11b680d43756b12ddcc))
+* add hyperlog ([a4d4506](https://github.com/kjuulh/zim-kjuulh/commit/a4d4506bbb84d6bfc92258b2cb695fe3054d296e))
+* as one command ([b3f9055](https://github.com/kjuulh/zim-kjuulh/commit/b3f905558026870242ce2d001f0686c27e860fa7))
+* fix ,k ([f5a486d](https://github.com/kjuulh/zim-kjuulh/commit/f5a486d5996d14f9b2a631475c33abd6eed0584b))
+* full trace baby ([ff45c2c](https://github.com/kjuulh/zim-kjuulh/commit/ff45c2c3ac52a7457cccdcdcd3883fda227e621f))
+* move system to the lowest, as it may require input ([9e142cc](https://github.com/kjuulh/zim-kjuulh/commit/9e142cc7e020105c4754d419ce4453bd8735cf08))
+* with coffee variable ([35efd81](https://github.com/kjuulh/zim-kjuulh/commit/35efd81566b2c0f222a95f7242c8cc6ce5be9abf))
+* with init.zsh ([88ac3c5](https://github.com/kjuulh/zim-kjuulh/commit/88ac3c524638924f2bf2111a1a7cd50081f8064b))
+* with preview parquet ([64525cd](https://github.com/kjuulh/zim-kjuulh/commit/64525cd6aa1866d92d87dad546f898ff6eec4d1d))
+* with update ([4b567f4](https://github.com/kjuulh/zim-kjuulh/commit/4b567f4c78c8e7213c4d925d5291bc3767ec38e3))
+* with zellij ([5f53522](https://github.com/kjuulh/zim-kjuulh/commit/5f5352259dfc5bc27f47f3205303932b7d0d3c61))
+* with zellij update all ([aa54106](https://github.com/kjuulh/zim-kjuulh/commit/aa54106816131296bd6d7b832efec64da7cb0474))
+* without hardcoded value ([7bdca8b](https://github.com/kjuulh/zim-kjuulh/commit/7bdca8be8032113af472cc34326ed6a046c05893))
+* without path, f me ([187b72a](https://github.com/kjuulh/zim-kjuulh/commit/187b72af43aec07c2181d62bf8a5e1f0947a1b15))
+* without ranger ([862019f](https://github.com/kjuulh/zim-kjuulh/commit/862019facc6764a7d55b10516dbe37aacf55fe16))
+
 ## [1.3.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.2.0...v1.3.0) (2023-08-09)
 
 
