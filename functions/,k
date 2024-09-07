@@ -6,6 +6,6 @@ builtin emulate -L zsh
 
 echo "select a context"
 
-file=$(gum file $CLANK_KUBERNETES_CONFIGS)
+file=$(gum file --height 10 $CLANK_KUBERNETES_CONFIGS)
 
 export KUBECONFIG="${file}"
