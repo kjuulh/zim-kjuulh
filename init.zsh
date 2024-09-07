@@ -4,6 +4,7 @@ export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
 
 # Coffee setup (https://git.front.kjuulh.io/kjuulh/coffee) is a gitea cli client like gh-cli
 export COFFEE_OWNER=kjuulh
+export FLUX_RELEASER_REGISTRY=https://releaser.i.kjuulh.io:443
 
 #source <(jj util completion --zsh)
 
