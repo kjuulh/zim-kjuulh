@@ -8,6 +8,43 @@ export FLUX_RELEASER_REGISTRY=https://releaser.i.kjuulh.io:443
 
 #source <(jj util completion --zsh)
 
+function jls() {
+  jj status
+}
+
+function jl() {
+  jj log
+}
+
+function jc() {
+  message=$(gum write)
+  if [ -z $message ]; then
+    echo "no message arg was provided"
+    return 1
+  fi
+
+  jca "$message"
+}
+
+function jca() {
+  local message=$1
+  if [ -z $message ]; then
+    echo "no message arg was provided"
+    return 1
+  fi
+
+  jj commit -m "$message"
+}
+
+function jp() {
+  if [ -z $message ]; then
+    echo "no message arg was provided"
+    return 1
+  fi
+
+  commit_msg=$(jj commit -m "$message" 2>&1)
+}
+
 gbt () 
 {
   list=$(git branch -l --all  | grep origin | sed 's/remotes\///g')

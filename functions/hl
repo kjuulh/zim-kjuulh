@@ -3,6 +3,7 @@
 builtin emulate -L zsh
 
 RUST_LOG=hyperlog=trace
+EDITOR=nvim
 
 hyperlog \
   --backend remote \
