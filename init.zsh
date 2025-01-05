@@ -179,6 +179,7 @@ dev() {
     local timeout=5  # Timeout in seconds for local connection attempt
     local local_host="nef"
     local remote_host="nef_remote"
+    local zellij_cmd="if command -v zellij >/dev/null 2>&1; then zellij attach || zellij; else echo 'zellij not found, starting regular session'; $SHELL; fi"
 
     echo "Attempting local connection to $local_host..."
     
@@ -189,7 +190,7 @@ dev() {
                           "$local_host" "exit" 2>/dev/null; then
         # If the test connection succeeded, make the actual connection
         echo "Connected locally"
-        ssh "$local_host" zellij
+        ssh "$local_host" "$zellij_cmd"
     else
         echo "Local connection failed, trying remote connection..."
         # Try remote connection
@@ -197,7 +198,7 @@ dev() {
                -o StrictHostKeyChecking=accept-new \
                "$remote_host" "exit" 2>/dev/null; then
             echo "Connected remotely"
-            ssh "$remote_host" zellij
+            ssh "$remote_host" "$zellij_cmd"
         else
             echo "Error: Both local and remote connections failed"
             return 1
