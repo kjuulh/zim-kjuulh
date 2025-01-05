@@ -190,7 +190,7 @@ dev() {
                           "$local_host" "exit" 2>/dev/null; then
         # If the test connection succeeded, make the actual connection
         echo "Connected locally"
-        ssh "$local_host" "$zellij_cmd"
+        ssh -t "$local_host" "$zellij_cmd"
     else
         echo "Local connection failed, trying remote connection..."
         # Try remote connection
@@ -198,7 +198,7 @@ dev() {
                -o StrictHostKeyChecking=accept-new \
                "$remote_host" "exit" 2>/dev/null; then
             echo "Connected remotely"
-            ssh "$remote_host" "$zellij_cmd"
+            ssh -t "$remote_host" "$zellij_cmd"
         else
             echo "Error: Both local and remote connections failed"
             return 1
