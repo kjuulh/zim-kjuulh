@@ -175,5 +175,35 @@ preview_parquet() {
   fd .parquet "${p}" | fzf --preview 'pqrs head -n 5 {} --json | jq' --preview-window 'top:70%'
 }
 
+dev() {
+    local timeout=5  # Timeout in seconds for local connection attempt
+    local local_host="nef"
+    local remote_host="nef_remote"
+
+    echo "Attempting local connection to $local_host..."
+    
+    # Try local connection first with timeout
+    if timeout $timeout ssh -o ConnectTimeout=$timeout \
+                          -o BatchMode=yes \
+                          -o StrictHostKeyChecking=accept-new \
+                          "$local_host" "exit" 2>/dev/null; then
+        # If the test connection succeeded, make the actual connection
+        echo "Connected locally"
+        ssh "$local_host"
+    else
+        echo "Local connection failed, trying remote connection..."
+        # Try remote connection
+        if ssh -o ConnectTimeout=10 \
+               -o StrictHostKeyChecking=accept-new \
+               "$remote_host" "exit" 2>/dev/null; then
+            echo "Connected remotely"
+            ssh "$remote_host"
+        else
+            echo "Error: Both local and remote connections failed"
+            return 1
+        fi
+    fi
+}
+
 alias git-review=~/.cargo/bin/rev
 alias ranger=yazi
