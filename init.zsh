@@ -179,7 +179,8 @@ dev() {
     local timeout=5  # Timeout in seconds for local connection attempt
     local local_host="nef"
     local remote_host="nef_remote"
-    local zellij_cmd="if command -v zellij >/dev/null 2>&1; then zellij attach || zellij; else echo 'zellij not found, starting regular session'; $SHELL; fi"
+    #local zellij_cmd="if command -v zellij >/dev/null 2>&1; then zellij attach || zellij; else echo 'zellij not found, starting regular session'; $SHELL; fi"
+    local zellij_cmd="zellij"
 
     echo "Attempting local connection to $local_host..."
     
