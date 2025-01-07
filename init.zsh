@@ -91,7 +91,7 @@ get_commit_description() {
   descriptionBlock="${(F)descriptionLines}"
   descriptionBlock="$(echo "$descriptionBlock" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
 
-  "$description"
+  echo "$description"
 }
 
 
