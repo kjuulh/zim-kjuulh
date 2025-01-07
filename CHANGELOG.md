@@ -1,5 +1,48 @@
 # Changelog
 
+## [1.4.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.3.0...v1.4.0) (2025-01-07)
+
+
+### Features
+
+* add -t for zellij ([e933471](https://github.com/kjuulh/zim-kjuulh/commit/e93347166dbc893c69fceb3be6b00d58215c7649))
+* add ,k ([c567949](https://github.com/kjuulh/zim-kjuulh/commit/c5679495bda8e507570cc11b680d43756b12ddcc))
+* add actual zellij command ([9f8aa85](https://github.com/kjuulh/zim-kjuulh/commit/9f8aa85598ff1f44cfb1f9f025fde0b421a690a6))
+* add hyperlog ([a4d4506](https://github.com/kjuulh/zim-kjuulh/commit/a4d4506bbb84d6bfc92258b2cb695fe3054d296e))
+* add mosh ([e37dce8](https://github.com/kjuulh/zim-kjuulh/commit/e37dce861a9634965846c587cde191f36fd3a5b3))
+* add zellij ([82e9059](https://github.com/kjuulh/zim-kjuulh/commit/82e90595c90106f6c8e0c22bef306836428a7cd2))
+* as one command ([b3f9055](https://github.com/kjuulh/zim-kjuulh/commit/b3f905558026870242ce2d001f0686c27e860fa7))
+* back to mosh ([131e331](https://github.com/kjuulh/zim-kjuulh/commit/131e331c69d68c8ef823de923a8ef6d6c570793d))
+* back to ssh ([1bf7f10](https://github.com/kjuulh/zim-kjuulh/commit/1bf7f10b6ec42b8361395304f2e14509486f5ba9))
+* create pr with jujutsu ([8a838cf](https://github.com/kjuulh/zim-kjuulh/commit/8a838cf51a508da2ba1f63eaa75e97d07824ad2f))
+* fix ,k ([f5a486d](https://github.com/kjuulh/zim-kjuulh/commit/f5a486d5996d14f9b2a631475c33abd6eed0584b))
+* full trace baby ([ff45c2c](https://github.com/kjuulh/zim-kjuulh/commit/ff45c2c3ac52a7457cccdcdcd3883fda227e621f))
+* join description ([f9c65a9](https://github.com/kjuulh/zim-kjuulh/commit/f9c65a97a8f9e5ef9885f127aefd2417d04c330b))
+* more invovled jr help ([d41faed](https://github.com/kjuulh/zim-kjuulh/commit/d41faed51b0adca4d109473030e881c0b4408151))
+* move system to the lowest, as it may require input ([9e142cc](https://github.com/kjuulh/zim-kjuulh/commit/9e142cc7e020105c4754d419ce4453bd8735cf08))
+* only zellij ([3854ffb](https://github.com/kjuulh/zim-kjuulh/commit/3854ffbdff927aec4fddfdfab55e9be16cfa7726))
+* remove uneeded stuff ([14c1c72](https://github.com/kjuulh/zim-kjuulh/commit/14c1c72b19b79710bd53dc3b10682406ab80ccd7))
+* trying again ([b5795f4](https://github.com/kjuulh/zim-kjuulh/commit/b5795f4222e1f02e7d370bc09b945870ab940016))
+* update dev machine ([3636cef](https://github.com/kjuulh/zim-kjuulh/commit/3636cef502cf143490d65fc93c90ab85804cac13))
+* update once again ([9b9720b](https://github.com/kjuulh/zim-kjuulh/commit/9b9720b2512ebcf324cbbfc3d4618014126e5335))
+* use nvim for hyperlog ([1c02c20](https://github.com/kjuulh/zim-kjuulh/commit/1c02c203c0478927008ed71780e173cb23ea5b3d))
+* with coffee variable ([35efd81](https://github.com/kjuulh/zim-kjuulh/commit/35efd81566b2c0f222a95f7242c8cc6ce5be9abf))
+* with init.zsh ([88ac3c5](https://github.com/kjuulh/zim-kjuulh/commit/88ac3c524638924f2bf2111a1a7cd50081f8064b))
+* with preview parquet ([64525cd](https://github.com/kjuulh/zim-kjuulh/commit/64525cd6aa1866d92d87dad546f898ff6eec4d1d))
+* with releaser ([e2bf3a7](https://github.com/kjuulh/zim-kjuulh/commit/e2bf3a76b786f0234fd9624eb078f73722795921))
+* with update ([4b567f4](https://github.com/kjuulh/zim-kjuulh/commit/4b567f4c78c8e7213c4d925d5291bc3767ec38e3))
+* with zellij ([5f53522](https://github.com/kjuulh/zim-kjuulh/commit/5f5352259dfc5bc27f47f3205303932b7d0d3c61))
+* with zellij update all ([aa54106](https://github.com/kjuulh/zim-kjuulh/commit/aa54106816131296bd6d7b832efec64da7cb0474))
+* without hardcoded value ([7bdca8b](https://github.com/kjuulh/zim-kjuulh/commit/7bdca8be8032113af472cc34326ed6a046c05893))
+* without path, f me ([187b72a](https://github.com/kjuulh/zim-kjuulh/commit/187b72af43aec07c2181d62bf8a5e1f0947a1b15))
+* without ranger ([862019f](https://github.com/kjuulh/zim-kjuulh/commit/862019facc6764a7d55b10516dbe37aacf55fe16))
+
+
+### Bug Fixes
+
+* command ([9578bf2](https://github.com/kjuulh/zim-kjuulh/commit/9578bf2434c203d13ea1a58a45b9e194089612d6))
+* set height as it is 1 by default now, somehow ([20aa5dc](https://github.com/kjuulh/zim-kjuulh/commit/20aa5dcebc50b616dd01239d4ccf7f110bc27ba9))
+
 ## [1.3.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.2.0...v1.3.0) (2023-08-09)
 
 
