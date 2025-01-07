@@ -7,6 +7,93 @@ export COFFEE_OWNER=kjuulh
 export FLUX_RELEASER_REGISTRY=https://releaser.i.kjuulh.io:443
 
 #source <(jj util completion --zsh)
+#
+get_commit_title() {
+  # Read entire input into a variable
+  local input=$1
+
+  # Separate lines into an array (we'll ignore trailing empty lines)
+  local -a lines
+  lines=("${(f)input}")
+
+  local title=""
+  local -a rest=()
+
+  local foundTitle=false
+  for line in "${lines[@]}"; do
+    if [[ -z "$line" && "$foundTitle" == false ]]; then
+      # Skip leading empty lines until we find a title
+      continue
+    fi
+
+    if [[ "$foundTitle" == false ]]; then
+      title="$line"
+      foundTitle=true
+    else
+      rest+=("$line")
+    fi
+  done
+
+  # Now remove everything after 'diff --git'
+  local -a descriptionLines=()
+  for line in "${rest[@]}"; do
+    if [[ "$line" =~ ^diff[[:space:]]--git ]]; then
+      break
+    fi
+    descriptionLines+=("$line")
+  done
+
+  # Join the description lines and trim leading/trailing whitespace
+  local descriptionBlock
+  descriptionBlock="${(F)descriptionLines}"
+  descriptionBlock="$(echo "$descriptionBlock" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+
+  "$title"
+}
+
+get_commit_description() {
+  # Read entire input into a variable
+  local input=$1
+
+  # Separate lines into an array (we'll ignore trailing empty lines)
+  local -a lines
+  lines=("${(f)input}")
+
+  local title=""
+  local -a rest=()
+
+  local foundTitle=false
+  for line in "${lines[@]}"; do
+    if [[ -z "$line" && "$foundTitle" == false ]]; then
+      # Skip leading empty lines until we find a title
+      continue
+    fi
+
+    if [[ "$foundTitle" == false ]]; then
+      title="$line"
+      foundTitle=true
+    else
+      rest+=("$line")
+    fi
+  done
+
+  # Now remove everything after 'diff --git'
+  local -a descriptionLines=()
+  for line in "${rest[@]}"; do
+    if [[ "$line" =~ ^diff[[:space:]]--git ]]; then
+      break
+    fi
+    descriptionLines+=("$line")
+  done
+
+  # Join the description lines and trim leading/trailing whitespace
+  local descriptionBlock
+  descriptionBlock="${(F)descriptionLines}"
+  descriptionBlock="$(echo "$descriptionBlock" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+
+  "$description"
+}
+
 
 function jprc() {
   branch=$(gum input --placeholder "Your new branch name")
@@ -17,7 +104,13 @@ function jprc() {
 
   jj bookmark create "$branch" -r @-
   jj git push -b "$branch" --allow-new
-  ghprc -H "origin/$branch"
+
+  bookmark_commit=$(jj show "$branch" --template 'description' --git)
+
+  title="$(get_commit_title ${bookmark_commit})"
+  body="$(get_commit_description ${bookmark_commit})"
+  
+  ghprc --head "origin/$branch" --title="${title}" --body "${body}"
 }
 
 function jls() {
