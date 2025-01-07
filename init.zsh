@@ -48,7 +48,7 @@ get_commit_title() {
   descriptionBlock="${(F)descriptionLines}"
   descriptionBlock="$(echo "$descriptionBlock" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
 
-  "$title"
+  echo "$title"
 }
 
 get_commit_description() {
@@ -107,8 +107,8 @@ function jprc() {
 
   bookmark_commit=$(jj show "$branch" --template 'description' --git)
 
-  title="$(get_commit_title ${bookmark_commit})"
-  body="$(get_commit_description ${bookmark_commit})"
+  title=$(get_commit_title "$bookmark_commit")
+  body=$(get_commit_description "$bookmark_commit")
   
   ghprc --head "origin/$branch" --title="${title}" --body "${body}"
 }
