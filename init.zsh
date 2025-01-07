@@ -98,7 +98,7 @@ function jprc() {
   title=$(get_commit_title "$bookmark_commit")
   body=$(get_commit_description "$bookmark_commit")
   
-  ghprc --head "origin/$branch" --title="${title}" --body "${body}"
+  ghprc --head "$branch" --title="$title" --body "$body"
 }
 
 function jls() {
