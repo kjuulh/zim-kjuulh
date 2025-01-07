@@ -2,7 +2,7 @@
 
 builtin emulate -L zsh
 
-update_commands=("brew update && brew upgrade" "rustup update" "cargo install-update -a" "zimfw update" "nvim -c 'MasonUpdate' -c 'Lazy update' -c 'qa'")
+update_commands=("brew update && brew upgrade" "rustup update" "cargo install-update -a" "zimfw update" "nvim -c 'MasonUpdate' -c 'Lazy update' -c 'qa'" "yay -Syyuu")
 
 # Flag to check if it's the first command
 first_command=1

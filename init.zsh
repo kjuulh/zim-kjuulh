@@ -8,6 +8,18 @@ export FLUX_RELEASER_REGISTRY=https://releaser.i.kjuulh.io:443
 
 #source <(jj util completion --zsh)
 
+function jprc() {
+  branch=$(gum input --placeholder "Your new branch name")
+  if [ -z $branch ]; then
+    echo "no branch was provided"
+    return 1
+  fi
+
+  jj bookmark create "$branch" -r @-
+  jj git push -b "$branch" --allow-new
+  ghprc -H "origin/$branch"
+}
+
 function jls() {
   jj status
 }
@@ -159,7 +171,7 @@ ghpc ()
 
 ghprc () 
 {
-  gh_client pr create
+  gh_client pr create "$@"
 }
 
 update()
