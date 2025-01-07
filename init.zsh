@@ -77,21 +77,9 @@ get_commit_description() {
     fi
   done
 
-  # Now remove everything after 'diff --git'
-  local -a descriptionLines=()
-  for line in "${rest[@]}"; do
-    if [[ "$line" =~ ^diff[[:space:]]--git ]]; then
-      break
-    fi
-    descriptionLines+=("$line")
-  done
+  descriptionBlock="${(F)rest}"
 
-  # Join the description lines and trim leading/trailing whitespace
-  local descriptionBlock
-  descriptionBlock="${(F)descriptionLines}"
-  descriptionBlock="$(echo "$descriptionBlock" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
-
-  echo "$description"
+  echo "$descriptionBlock"
 }
 
 
