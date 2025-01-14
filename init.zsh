@@ -271,38 +271,44 @@ preview_parquet() {
 dev() {
     voidpin_port=$(shuf -i 30000-40000 -n 1)
     RUST_LOG=warn voidpin listen --grpc "0.0.0.0:$voidpin_port" &
+    local pid=$! 
      
     local timeout=5  # Timeout in seconds for local connection attempt
     local local_host="nef"
     local remote_host="nef_remote"
     #local zellij_cmd="if command -v zellij >/dev/null 2>&1; then zellij attach || zellij; else echo 'zellij not found, starting regular session'; $SHELL; fi"
-    local zellij_cmd="export VOIDPIN_REMOTE=http://10.0.9.20:$voidpin_port zellij"
+    local zellij_cmd="zellij"
 
     echo "Attempting local connection to $local_host..."
-    
-    # Try local connection first with timeout
-    if timeout $timeout ssh -o ConnectTimeout=$timeout \
-                          -o BatchMode=yes \
-                          -o StrictHostKeyChecking=accept-new \
-                          "$local_host" "exit" 2>/dev/null; then
-        # If the test connection succeeded, make the actual connection
-        echo "Connected locally"
-        MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="ssh -t" "$local_host" -- "$zellij_cmd"
-        #ssh -t "$local_host" "$zellij_cmd"
-    else
-        echo "Local connection failed, trying remote connection..."
-        # Try remote connection
-        if ssh -o ConnectTimeout=10 \
-               -o StrictHostKeyChecking=accept-new \
-               "$remote_host" "exit" 2>/dev/null; then
-            echo "Connected remotely"
-            MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="ssh -t" "$remote_host" -- "$zellij_cmd"
-            #ssh -t "$remote_host" "$zellij_cmd"
-        else
-            echo "Error: Both local and remote connections failed"
-            return 1
-        fi
-    fi
+
+    {
+      # Try local connection first with timeout
+      if timeout $timeout ssh -o ConnectTimeout=$timeout \
+                            -o BatchMode=yes \
+                            -o StrictHostKeyChecking=accept-new \
+                            "$local_host" "exit" 2>/dev/null; then
+          # If the test connection succeeded, make the actual connection
+          echo "Connected locally"
+          MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="ssh -t" "$local_host" -- zsh -c "VOIDPIN_REMOTE=http://10.0.9.20:$voidpin_port $zellij_cmd"
+          #ssh -t "$local_host" "$zellij_cmd"
+      else
+          echo "Local connection failed, trying remote connection..."
+          # Try remote connection
+          if ssh -o ConnectTimeout=10 \
+                 -o StrictHostKeyChecking=accept-new \
+                 "$remote_host" "exit" 2>/dev/null; then
+              echo "Connected remotely"
+              MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="ssh -t" "$remote_host" -- zsh -c "VOIDPIN_REMOTE=http://10.0.9.20:$voidpin_port $zellij_cmd"
+              #ssh -t "$remote_host" "$zellij_cmd"
+          else
+              echo "Error: Both local and remote connections failed"
+              return 1
+          fi
+      fi
+    } always {
+      kill $pid 2>/dev/null
+    }
+
 }
 
 alias git-review=~/.cargo/bin/rev
