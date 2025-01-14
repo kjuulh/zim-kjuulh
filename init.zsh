@@ -269,11 +269,14 @@ preview_parquet() {
 }
 
 dev() {
+    voidpin_port=$(shuf -i 30000-40000 -n 1)
+    RUST_LOG=warn voidpin listen --grpc "0.0.0.0:$voidpin_port" &
+     
     local timeout=5  # Timeout in seconds for local connection attempt
     local local_host="nef"
     local remote_host="nef_remote"
     #local zellij_cmd="if command -v zellij >/dev/null 2>&1; then zellij attach || zellij; else echo 'zellij not found, starting regular session'; $SHELL; fi"
-    local zellij_cmd="zellij"
+    local zellij_cmd="export VOIDPIN_REMOTE=http://10.0.9.20:$voidpin_port zellij"
 
     echo "Attempting local connection to $local_host..."
     
