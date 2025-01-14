@@ -79,7 +79,7 @@ get_commit_description() {
 
   descriptionBlock="${(F)rest}"
 
-  echo "$descriptionBlock"
+  echo "$descriptionBlock" | cut-after "diff --git"
 }
 
 
