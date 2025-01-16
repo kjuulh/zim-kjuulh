@@ -97,8 +97,19 @@ function jprc() {
 
   title=$(get_commit_title "$bookmark_commit")
   body=$(get_commit_description "$bookmark_commit")
+
+  cmd=(ghprc --head "$branch", "--web")
+
+  if [[ -n "$title" ]]; then
+    cmd+=(--title "$title")
+  fi
   
-  ghprc --head "$branch" --title="$title" --body "$body"
+  if [[ -n "$body" ]]; then
+    cmd+=(--body "$body")
+  fi
+
+  # Execute the command
+  "${cmd[@]}"
 }
 
 function jls() {
