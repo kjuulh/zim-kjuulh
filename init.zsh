@@ -6,8 +6,7 @@ export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
 export COFFEE_OWNER=kjuulh
 export FLUX_RELEASER_REGISTRY=https://releaser.i.kjuulh.io:443
 
-#source <(jj util completion --zsh)
-#
+
 get_commit_title() {
   # Read entire input into a variable
   local input=$1
@@ -98,7 +97,7 @@ function jprc() {
   title=$(get_commit_title "$bookmark_commit")
   body=$(get_commit_description "$bookmark_commit")
 
-  cmd=(ghprc --head "$branch", "--web")
+  cmd=(ghprc --head "$branch")
 
   if [[ -n "$title" ]]; then
     cmd+=(--title "$title")
@@ -110,6 +109,10 @@ function jprc() {
 
   # Execute the command
   "${cmd[@]}"
+}
+
+function jpv() {
+  ghpv
 }
 
 function jls() {
