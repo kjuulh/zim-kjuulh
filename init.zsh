@@ -105,6 +105,8 @@ function jprc() {
   
   if [[ -n "$body" ]]; then
     cmd+=(--body "$body")
+  else
+    cmd+=(--body "$title")
   fi
 
   # Execute the command
