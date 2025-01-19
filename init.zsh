@@ -137,7 +137,7 @@ function jc() {
 
 
 function jpl() {
-  bookmarks=$(jj b m -r 'bookmarks(regex:"master|main")')
+  bookmarks=$(jj b l -r 'bookmarks(regex:"master|main")')
 
   if echo "$bookmarks" | grep -q "main"; then
       jj b m main --to @-
