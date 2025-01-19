@@ -145,7 +145,7 @@ function jpl() {
       jj b m master --to @-
   else
       echo "No 'main' or 'master' bookmark found."
-      exit 1
+      return 1
   fi
 
   jj git push
