@@ -135,6 +135,23 @@ function jc() {
   jca "$message"
 }
 
+
+function jpl() {
+  bookmarks=$(jj b m -r 'bookmarks(regex:"master|main")')
+
+  if echo "$bookmarks" | grep -q "main"; then
+      jj b m main --to @-
+  elif echo "$bookmarks" | grep -q "master"; then
+      jj b m master --to @-
+  else
+      echo "No 'main' or 'master' bookmark found."
+      exit 1
+  fi
+
+  jj git push
+}
+
+
 function jca() {
   local message=$1
   if [ -z $message ]; then
