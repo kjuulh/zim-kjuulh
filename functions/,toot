@@ -2,7 +2,7 @@
 
 builtin emulate -L zsh
 
-file_path="$HOME/git/git.front.kjuulh.io/kjuulh/toots/"
+file_path="$HOME/git/git.kjuulh.io/kjuulh/toots/"
 timestamp=$(date +%Y-%m-%d-%s)
 
 tmpfile="$file_path$timestamp"

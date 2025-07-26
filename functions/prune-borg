@@ -4,9 +4,10 @@ builtin emulate -L zsh
 
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 export BORG_PASSPHRASE=$(op item get --vault application  borg_backup_hermansen_server --fields borg_passphrase)
+BORG_PASSPHRASE=MCEihGKxbrXrKLeJJEzqtqvEeN
 
 # Prompt the user to choose an option using fzf
-selected_option=$(echo -e "parts\nratchet" | fzf --prompt="Select a backup: ")
+selected_option=$(echo -e "parts\nratchet\ngitea" | fzf --prompt="Select a backup: ")
 
 # Check if a selection was made
 if [[ -z "$selected_option" ]]; then
