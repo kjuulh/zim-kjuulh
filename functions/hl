@@ -7,4 +7,4 @@ EDITOR=nvim
 
 hyperlog \
   --backend remote \
-  --backend-url https://grpc.hyperlog.prod.kjuulh.app:443
+  --backend-url https://grpc-hyperlog.i.kjuulh.io:443

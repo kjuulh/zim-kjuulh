@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-export CUDDLE_TEMPLATE_URL=git@git.front.kjuulh.io:kjuulh/cuddle-templates.git
+export CUDDLE_TEMPLATE_URL=git@git.kjuulh.io:kjuulh/cuddle-templates.git
 
-# Coffee setup (https://git.front.kjuulh.io/kjuulh/coffee) is a gitea cli client like gh-cli
+# Coffee setup (https://git.kjuulh.io/kjuulh/coffee) is a gitea cli client like gh-cli
 export COFFEE_OWNER=kjuulh
 export FLUX_RELEASER_REGISTRY=https://releaser.i.kjuulh.io:443
 
@@ -241,7 +241,7 @@ gh_client ()
   if [[ "$REMOTE_URL" =~ "github.com" ]]; then
     # Execute gh command
     gh $@
-  elif [[ "$REMOTE_URL" =~ "git.front.kjuulh.io" ]]; then
+  elif [[ "$REMOTE_URL" =~ "git.kjuulh.io" ]]; then
     # Execute gtea command
     coffee $@
   else
