@@ -304,34 +304,50 @@ preview_parquet() {
 dev() {
     voidpin_port=$(shuf -i 30000-40000 -n 1)
     RUST_LOG=warn voidpin listen --grpc "0.0.0.0:$voidpin_port" &
-    local pid=$! 
+    local pid=$!
+
+    local tunnel_port=$(shuf -i 30000-40000 -n 1)
+    local client_remote_ip="10.0.9.19"
+    local server_remote_ip="10.0.9.18"
+    
+    RUST_LOG=warn notunnel \
+      --host "$client_remote_ip:$tunnel_port" \
+      --server-host "$server_remote_ip" \
+      --client-host "$client_remote_ip" \
+      --client-host-port $tunnel_port \
+      serve &
+    local notunnel_pid=$! 
      
-    local timeout=2  # Timeout in seconds for local connection attempt
+    local timeout=5  # Timeout in seconds for local connection attempt
     local local_host="nef"
     local remote_host="nef_remote"
     #local zellij_cmd="if command -v zellij >/dev/null 2>&1; then zellij attach || zellij; else echo 'zellij not found, starting regular session'; $SHELL; fi"
     local zellij_cmd="zellij"
 
+    local tunnel_cmd="NOTUNNEL_HOST=$server_remote_ip NOTUNNEL_CLIENT_HOST=$client_remote_ip NOTUNNEL_HOST_PORT=$tunnel_port"
+
+    local ssh_cmd=/usr/bin/ssh
+
     echo "Attempting local connection to $local_host..."
 
     {
       # Try local connection first with timeout
-      if timeout $timeout ssh -o ConnectTimeout=$timeout \
+      if timeout $timeout $ssh_cmd -o ConnectTimeout=$timeout \
                             -o BatchMode=yes \
                             -o StrictHostKeyChecking=accept-new \
-                            "$local_host" "exit" 2>/dev/null; then
+                            "$local_host" "exit" ; then
           # If the test connection succeeded, make the actual connection
           echo "Connected locally"
-          MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="ssh -t" "$local_host" -- zsh -c "export VOIDPIN_REMOTE=http://10.0.9.19:$voidpin_port; $zellij_cmd"
+          MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="$ssh_cmd -t" "$local_host" -- zsh -c "VOIDPIN_REMOTE=http://10.0.9.19:$voidpin_port $tunnel_cmd $zellij_cmd"
           #ssh -t "$local_host" "$zellij_cmd"
       else
           echo "Local connection failed, trying remote connection..."
           # Try remote connection
-          if ssh -o ConnectTimeout=10 \
+          if $ssh_cmd -o ConnectTimeout=10 \
                  -o StrictHostKeyChecking=accept-new \
-                 "$remote_host" "exit" 2>/dev/null; then
+                 "$remote_host" "exit"; then
               echo "Connected remotely"
-              MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="ssh -t" "$remote_host" -- zsh -c "export VOIDPIN_REMOTE=http://10.0.9.19:$voidpin_port; $zellij_cmd"
+              MOSH_TITLE_NOPREFIX=1 mosh --no-init --ssh="$ssh_cmd -t" "$remote_host" -- zsh -c "VOIDPIN_REMOTE=http://10.0.9.19:$voidpin_port $tunnel_cmd $zellij_cmd"
               #ssh -t "$remote_host" "$zellij_cmd"
           else
               echo "Error: Both local and remote connections failed"
@@ -340,6 +356,7 @@ dev() {
       fi
     } always {
       kill $pid 2>/dev/null
+      kill $tunnel_pid 2>/dev/null
     }
 
 }
