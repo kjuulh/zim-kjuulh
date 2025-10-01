@@ -302,23 +302,23 @@ preview_parquet() {
 }
 
 dev() {
-    {
-        voidpin_port=$(shuf -i 30000-40000 -n 1)
-        RUST_LOG=warn voidpin listen --grpc "0.0.0.0:$voidpin_port" >/dev/null 2>&1 &
-        local pid=$!
+    voidpin_port=$(shuf -i 30000-40000 -n 1)
+    RUST_LOG=warn voidpin listen --grpc "0.0.0.0:$voidpin_port" >/dev/null 2>&1 &
+    local pid=$!
+    disown $pid
 
-        local tunnel_port=$(shuf -i 30000-40000 -n 1)
-        local client_remote_ip="10.0.9.19"
-        local server_remote_ip="10.0.9.18"
-        
-        RUST_LOG=warn notunnel \
-          --host "$client_remote_ip:$tunnel_port" \
-          --server-host "$server_remote_ip" \
-          --client-host "$client_remote_ip" \
-          --client-host-port $tunnel_port \
-          serve >/dev/null 2>&1 &
-        local notunnel_pid=$!
-    } 2>/dev/null 
+    local tunnel_port=$(shuf -i 30000-40000 -n 1)
+    local client_remote_ip="10.0.9.19"
+    local server_remote_ip="10.0.9.18"
+    
+    RUST_LOG=warn notunnel \
+      --host "$client_remote_ip:$tunnel_port" \
+      --server-host "$server_remote_ip" \
+      --client-host "$client_remote_ip" \
+      --client-host-port $tunnel_port \
+      serve >/dev/null 2>&1 &
+    local notunnel_pid=$!
+    disown $notunnel_pid 
      
     local timeout=5  # Timeout in seconds for local connection attempt
     local local_host="nef"
