@@ -425,3 +425,134 @@ dev_ratchet() {
 
 alias git-review=~/.cargo/bin/rev
 alias ranger=yazi
+
+function jjt {
+  # Check if gum is installed (only needed for interactive mode)
+  if [[ -z "$1" ]] && ! command -v gum &> /dev/null; then
+      echo "Error: gum is not installed"
+      echo "Install with: brew install gum"
+      exit 1
+  fi
+
+  # Check if bookmark was provided as argument
+  if [[ -n "$1" ]]; then
+      selected_bookmark="$1"
+      echo "Using provided bookmark: $selected_bookmark"
+  else
+      gum style --foreground 212 --bold "Fetching remote bookmarks from origin..."
+
+      # Get list of remote bookmarks from origin
+      remote_bookmarks=$(jj bookmark list --remote origin 2>/dev/null | grep '@origin:' | awk '{print $1}' | sed 's/@origin:$//')
+
+      if [[ -z "$remote_bookmarks" ]]; then
+          gum style --foreground 196 "No remote bookmarks found on origin"
+          exit 1
+      fi
+
+      # Convert to array
+      bookmarks_array=("${(@f)remote_bookmarks}")
+
+      if [[ ${#bookmarks_array[@]} -eq 0 ]]; then
+          gum style --foreground 196 "No remote bookmarks available"
+          exit 1
+      fi
+
+      # Use gum filter for fuzzy search
+      gum style --foreground 86 --bold "Select a remote bookmark (type to search):"
+      selected_bookmark=$(printf "%s\n" "${bookmarks_array[@]}" | gum filter --height 15 --placeholder "Search bookmarks..." | sed 's/@origin:$//')
+
+      if [[ -z "$selected_bookmark" ]]; then
+          gum style --foreground 196 "No bookmark selected"
+          exit 1
+      fi
+
+      gum style --foreground 86 "Selected: $selected_bookmark"
+
+      # Confirm action
+      gum confirm "Track and checkout '$selected_bookmark'?" || {
+          gum style --foreground 214 "Cancelled"
+          exit 0
+      }
+  fi
+
+  echo "Tracking bookmark: ${selected_bookmark}@origin"
+  # Track the bookmark
+  if ! jj bookmark track "${selected_bookmark}@origin" 2>&1; then
+      echo "Failed to track bookmark"
+      exit 1
+  fi
+
+  echo "Creating new change on: $selected_bookmark"
+  # Create new change based on the bookmark
+  if ! jj new "$selected_bookmark" 2>&1; then
+      echo "Failed to create new change"
+      exit 1
+  fi
+
+  echo "✓ Successfully tracked and checked out bookmark: $selected_bookmark"
+}
+
+function ght {
+  # Check if gum is installed
+  if ! command -v gum &> /dev/null; then
+      echo "Error: gum is not installed"
+      echo "Install with: brew install gum"
+      exit 1
+  fi
+
+  # Check if gh is installed
+  if ! command -v gh &> /dev/null; then
+      echo "Error: gh is not installed"
+      echo "Install with: brew install gh"
+      exit 1
+  fi
+
+  gum style --foreground 212 --bold "Fetching open PRs from GitHub..."
+
+  # Get list of open PRs
+  pr_list=$(gh pr list --state open --json number,title,headRefName --template '{{range .}}{{printf "%d\t%s\t%s\n" .number .title .headRefName}}{{end}}' 2>/dev/null)
+
+  if [[ -z "$pr_list" ]]; then
+      gum style --foreground 196 "No open PRs found"
+      exit 1
+  fi
+
+  # Convert to array
+  pr_array=("${(@f)pr_list}")
+
+  if [[ ${#pr_array[@]} -eq 0 ]]; then
+      gum style --foreground 196 "No open PRs available"
+      exit 1
+  fi
+
+  # Use gum filter for fuzzy search
+  gum style --foreground 86 --bold "Select a PR (type to search):"
+  selected_line=$(printf "%s\n" "${pr_array[@]}" | gum filter --height 15 --placeholder "Search PRs...")
+
+  if [[ -z "$selected_line" ]]; then
+      gum style --foreground 196 "No PR selected"
+      exit 1
+  fi
+
+  # Extract PR number and branch name
+  pr_number=$(echo "$selected_line" | awk -F'\t' '{print $1}')
+  branch_name=$(echo "$selected_line" | awk -F'\t' '{print $3}')
+
+  gum style --foreground 86 "Selected: PR #$pr_number ($branch_name)"
+
+  # Confirm action
+  gum confirm "Checkout PR #$pr_number branch '$branch_name'?" || {
+      gum style --foreground 214 "Cancelled"
+      exit 0
+  }
+
+  echo "Checking out PR #$pr_number..."
+  # Checkout the PR
+  if ! gh pr checkout "$pr_number" 2>&1; then
+      echo "Failed to checkout PR"
+      exit 1
+  fi
+
+  echo "✓ Successfully checked out PR #$pr_number on branch: $branch_name"
+}
+
