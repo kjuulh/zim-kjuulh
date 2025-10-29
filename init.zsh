@@ -510,7 +510,7 @@ function ght {
   gum style --foreground 212 --bold "Fetching open PRs from GitHub..."
 
   # Get list of open PRs
-  pr_list=$(gh pr list --state open --json number,title,headRefName --template '{{range .}}{{printf "%d\t%s\t%s\n" .number .title .headRefName}}{{end}}' 2>/dev/null)
+  pr_list=$(gh pr list --state open --json number,title,headRefName --template '{{range .}}{{printf "%.0f\t%s\t%s\n" .number .title .headRefName}}{{end}}' 2>/dev/null)
 
   if [[ -z "$pr_list" ]]; then
       gum style --foreground 196 "No open PRs found"
