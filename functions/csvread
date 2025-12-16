@@ -1,0 +1,36 @@
+# vim:et sts=2 sw=2 ft=zsh
+
+builtin emulate -L zsh
+
+# Default delimiter
+local delimiter=","
+
+# Parse command line options
+local -a opts
+zparseopts -D -E -a opts d: -delimiter:
+
+# Extract delimiter if provided
+for i in {1..$#opts}; do
+  if [[ ${opts[$i]} == (-d|--delimiter) ]]; then
+    delimiter="${opts[$((i+1))]}"
+    break
+  fi
+done
+
+# Get remaining positional argument (input file)
+local input="$1"
+
+# If no input specified, use fzf to find one
+if [[ -z $input ]]; then
+  input=$(fzf)
+  # Exit if fzf was cancelled
+  [[ -z $input ]] && return 1
+# If input is a directory, use fzf to select a file from it
+elif [[ -d $input ]]; then
+  input=$(fzf --walker=file --walker-root="$input")
+  # Exit if fzf was cancelled
+  [[ -z $input ]] && return 1
+fi
+
+# Process the file
+cat "$input" | fexcel | csvlens -d "$delimiter"
