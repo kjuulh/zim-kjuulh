@@ -1,5 +1,70 @@
 # Changelog
 
+## [1.4.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.3.0...v1.4.0) (2026-02-28)
+
+
+### Features
+
+* add -t for zellij ([e933471](https://github.com/kjuulh/zim-kjuulh/commit/e93347166dbc893c69fceb3be6b00d58215c7649))
+* add ,k ([c567949](https://github.com/kjuulh/zim-kjuulh/commit/c5679495bda8e507570cc11b680d43756b12ddcc))
+* add actual zellij command ([9f8aa85](https://github.com/kjuulh/zim-kjuulh/commit/9f8aa85598ff1f44cfb1f9f025fde0b421a690a6))
+* add csvread ([36e20e8](https://github.com/kjuulh/zim-kjuulh/commit/36e20e828fa5228fd539ddc0ec97911971761472))
+* add dev ratchet ([b20e032](https://github.com/kjuulh/zim-kjuulh/commit/b20e032d8d7003f6901ed60b7cc4a74a3253898d))
+* add hyperlog ([a4d4506](https://github.com/kjuulh/zim-kjuulh/commit/a4d4506bbb84d6bfc92258b2cb695fe3054d296e))
+* add jjt and ght ([95a169b](https://github.com/kjuulh/zim-kjuulh/commit/95a169b46036f4da09bf2f02a4922eeba3d0fa50))
+* add mosh ([e37dce8](https://github.com/kjuulh/zim-kjuulh/commit/e37dce861a9634965846c587cde191f36fd3a5b3))
+* add voidpin to init ([cc567a8](https://github.com/kjuulh/zim-kjuulh/commit/cc567a83d1c377b90146b8e12664f1bb9fd6c74c))
+* add web flag, and conditional body ([68f5bbf](https://github.com/kjuulh/zim-kjuulh/commit/68f5bbf37a34f8a25a4af8233300ef136dfc37c7))
+* add zellij ([82e9059](https://github.com/kjuulh/zim-kjuulh/commit/82e90595c90106f6c8e0c22bef306836428a7cd2))
+* as one command ([b3f9055](https://github.com/kjuulh/zim-kjuulh/commit/b3f905558026870242ce2d001f0686c27e860fa7))
+* back to mosh ([131e331](https://github.com/kjuulh/zim-kjuulh/commit/131e331c69d68c8ef823de923a8ef6d6c570793d))
+* back to ssh ([1bf7f10](https://github.com/kjuulh/zim-kjuulh/commit/1bf7f10b6ec42b8361395304f2e14509486f5ba9))
+* change hyperlog ([c0c0088](https://github.com/kjuulh/zim-kjuulh/commit/c0c0088142f581c126027886b8721ff049791497))
+* create pr with jujutsu ([8a838cf](https://github.com/kjuulh/zim-kjuulh/commit/8a838cf51a508da2ba1f63eaa75e97d07824ad2f))
+* cut after git diff ([04df687](https://github.com/kjuulh/zim-kjuulh/commit/04df6871ecdf5617fe04b8bde0f046bff31cde77))
+* enable body as title if required ([0476b0d](https://github.com/kjuulh/zim-kjuulh/commit/0476b0d96888ea7178b67b3dbc1b2d9b81a7e03a))
+* fix ,k ([f5a486d](https://github.com/kjuulh/zim-kjuulh/commit/f5a486d5996d14f9b2a631475c33abd6eed0584b))
+* fix dev command ([d0ea12a](https://github.com/kjuulh/zim-kjuulh/commit/d0ea12a0c2329cb3ace1b5c8ea5293f4918d8d2c))
+* full trace baby ([ff45c2c](https://github.com/kjuulh/zim-kjuulh/commit/ff45c2c3ac52a7457cccdcdcd3883fda227e621f))
+* include jpl ([ce9ed64](https://github.com/kjuulh/zim-kjuulh/commit/ce9ed649c4448915108a463a5fc2513512a62952))
+* join description ([f9c65a9](https://github.com/kjuulh/zim-kjuulh/commit/f9c65a97a8f9e5ef9885f127aefd2417d04c330b))
+* more invovled jr help ([d41faed](https://github.com/kjuulh/zim-kjuulh/commit/d41faed51b0adca4d109473030e881c0b4408151))
+* move system to the lowest, as it may require input ([9e142cc](https://github.com/kjuulh/zim-kjuulh/commit/9e142cc7e020105c4754d419ce4453bd8735cf08))
+* only zellij ([3854ffb](https://github.com/kjuulh/zim-kjuulh/commit/3854ffbdff927aec4fddfdfab55e9be16cfa7726))
+* remove front ([be1ecc0](https://github.com/kjuulh/zim-kjuulh/commit/be1ecc009248914bbe5190c9d0bbc1f836297942))
+* remove uneeded stuff ([14c1c72](https://github.com/kjuulh/zim-kjuulh/commit/14c1c72b19b79710bd53dc3b10682406ab80ccd7))
+* suppress output from dev ([ea11263](https://github.com/kjuulh/zim-kjuulh/commit/ea11263d9643550d090d34c13f804bbd157cd9db))
+* try again ([bcb3b8d](https://github.com/kjuulh/zim-kjuulh/commit/bcb3b8d33de824ac5c487f0fe13b98b8982bb884))
+* trying again ([b5795f4](https://github.com/kjuulh/zim-kjuulh/commit/b5795f4222e1f02e7d370bc09b945870ab940016))
+* update dev machine ([3636cef](https://github.com/kjuulh/zim-kjuulh/commit/3636cef502cf143490d65fc93c90ab85804cac13))
+* update dev script with voidpin ([91bfe22](https://github.com/kjuulh/zim-kjuulh/commit/91bfe22b2252766fce03c29c9cd013fce24f8165))
+* update once again ([9b9720b](https://github.com/kjuulh/zim-kjuulh/commit/9b9720b2512ebcf324cbbfc3d4618014126e5335))
+* update zshrc ([834e43c](https://github.com/kjuulh/zim-kjuulh/commit/834e43cc98142805ecdfaf0339fc73a1fdd57fc6))
+* use export instead ([45e2fe4](https://github.com/kjuulh/zim-kjuulh/commit/45e2fe4bbc0d9a472615f0ece88efd3134fd4d85))
+* use normal editor ([f75ce8a](https://github.com/kjuulh/zim-kjuulh/commit/f75ce8a1c53ab4da2109b5ce3a8619874dbf8135))
+* use nvim again ([9a3c571](https://github.com/kjuulh/zim-kjuulh/commit/9a3c5717fd211791356f35b96beeee8f72b2260c))
+* use nvim for hyperlog ([1c02c20](https://github.com/kjuulh/zim-kjuulh/commit/1c02c203c0478927008ed71780e173cb23ea5b3d))
+* with coffee variable ([35efd81](https://github.com/kjuulh/zim-kjuulh/commit/35efd81566b2c0f222a95f7242c8cc6ce5be9abf))
+* with init.zsh ([88ac3c5](https://github.com/kjuulh/zim-kjuulh/commit/88ac3c524638924f2bf2111a1a7cd50081f8064b))
+* with preview parquet ([64525cd](https://github.com/kjuulh/zim-kjuulh/commit/64525cd6aa1866d92d87dad546f898ff6eec4d1d))
+* with releaser ([e2bf3a7](https://github.com/kjuulh/zim-kjuulh/commit/e2bf3a76b786f0234fd9624eb078f73722795921))
+* with update ([4b567f4](https://github.com/kjuulh/zim-kjuulh/commit/4b567f4c78c8e7213c4d925d5291bc3767ec38e3))
+* with zellij ([5f53522](https://github.com/kjuulh/zim-kjuulh/commit/5f5352259dfc5bc27f47f3205303932b7d0d3c61))
+* with zellij update all ([aa54106](https://github.com/kjuulh/zim-kjuulh/commit/aa54106816131296bd6d7b832efec64da7cb0474))
+* without hardcoded value ([7bdca8b](https://github.com/kjuulh/zim-kjuulh/commit/7bdca8be8032113af472cc34326ed6a046c05893))
+* without path, f me ([187b72a](https://github.com/kjuulh/zim-kjuulh/commit/187b72af43aec07c2181d62bf8a5e1f0947a1b15))
+* without ranger ([862019f](https://github.com/kjuulh/zim-kjuulh/commit/862019facc6764a7d55b10516dbe37aacf55fe16))
+
+
+### Bug Fixes
+
+* command ([9578bf2](https://github.com/kjuulh/zim-kjuulh/commit/9578bf2434c203d13ea1a58a45b9e194089612d6))
+* dev script ([6a12cff](https://github.com/kjuulh/zim-kjuulh/commit/6a12cff09d71874a4a37ac3134e4e2d475eb2cfe))
+* don't exit on none ([8b95201](https://github.com/kjuulh/zim-kjuulh/commit/8b9520112f881985a5cb7c4fe6b97b471ca1f0b3))
+* rendering ([f5ed947](https://github.com/kjuulh/zim-kjuulh/commit/f5ed94738fe5223d7cecdebb38e5f7f1e0ad651b))
+* set height as it is 1 by default now, somehow ([20aa5dc](https://github.com/kjuulh/zim-kjuulh/commit/20aa5dcebc50b616dd01239d4ccf7f110bc27ba9))
+* should list instead of move ([ada6b7f](https://github.com/kjuulh/zim-kjuulh/commit/ada6b7fd72f701ab965b0c1846675b550349f9dc))
+
 ## [1.3.0](https://github.com/kjuulh/zim-kjuulh/compare/v1.2.0...v1.3.0) (2023-08-09)
 
 
